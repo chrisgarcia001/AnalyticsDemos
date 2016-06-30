@@ -1,7 +1,6 @@
 #----------------------------------------------------------------------------------------------------
 # Author: cgarcia
-# About:  This contains the core functions for creating a classification model to predict Yelp stars
-#         from the review text.
+# About:  This contains the core functions for model evaluation.
 #----------------------------------------------------------------------------------------------------
 
 

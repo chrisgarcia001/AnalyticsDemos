@@ -1,3 +1,9 @@
+#----------------------------------------------------------------------------------------------------
+# Author: cgarcia
+# About:  This contains some functions for exploratory text analysis.
+#----------------------------------------------------------------------------------------------------
+
+
 library(tm)
 library(wordcloud)
 
@@ -65,10 +71,11 @@ stars.compare.wordplot <- function(fileobj, use.stars=c(1,3,5), layout=c(1, leng
 	if(save.as.png != "") {dev.off()}
 }
 
-# -------- SOME COLOR PALATES: ----------------
+# -------- SOME EXAMPLE COLOR PALATES: ----------------
 # colors=brewer.pal(4, "Dark2")
 # colors=brewer.pal(9,"BuGn")
 # colors=brewer.pal(4, "Set3")
 # colors=brewer.pal(9, "Paired")
 
+# AN EXAMPLE: 
 #build.wordcloud.from.dtm(sparsedtm, colors=brewer.pal(4, "Set3"))

@@ -1,4 +1,9 @@
-# As a prerequisite, analysis3.R must first be run.
+#----------------------------------------------------------------------------------------------------
+# Author: cgarcia
+# About:  This contains the core functions for creating a classification model to predict Yelp stars
+#         from the review text.
+#----------------------------------------------------------------------------------------------------
+
 
 np.percentileFinder <- function(vals, percentile, use.upper.bound = FALSE) {
 	if(use.upper.bound) { return(sort(v)[ceiling(length(vals) * percentile)]) }

@@ -1,9 +1,17 @@
+#----------------------------------------------------------------------------------------------------
+# Author: cgarcia
+# About:  This contains the core functions for creating a classification model to predict Yelp stars
+#         from the review text.
+#----------------------------------------------------------------------------------------------------
+
 library(tm)
 library(caret)
 library(MASS)
 
 
-# Build a dataset from the specified file. The target is "target.stars"
+# Builds a dataset from the specified file. The target is "target.stars". This
+# returns a dataframe document-term matrix with stemming, stop-words and 
+# punctuation removed, and using TF-IDF weighting.
 build.dataset <- function(filepath, sparsity.cutoff = 0.98, min.word.length = 3) {
 	dtm.control <- list(
 		tolower = TRUE, 
@@ -25,6 +33,7 @@ build.dataset <- function(filepath, sparsity.cutoff = 0.98, min.word.length = 3)
 	dtm.df
 }
 
+# Prints a summary of star distribution for a given raw dataset.
 summarize.stars <- function(ds) {
 	s1 <- subset(ds, target.stars == 1)
 	s2 <- subset(ds, target.stars == 2)
@@ -35,6 +44,7 @@ summarize.stars <- function(ds) {
 	message(paste("Distribution of Stars:", sizes))
 }
 
+# Provides a balanced sampling of stars.
 balanced.sample <- function(fileobj, sample.size, sparsity.cutoff = 0.98, min.word.length = 3) {
 	ds <- fileobj
 	if(is.character(fileobj)) {
@@ -54,6 +64,8 @@ balanced.sample <- function(fileobj, sample.size, sparsity.cutoff = 0.98, min.wo
 	d2
 }
 
+# Builds a balanced set of split training/test data of the specified proportion. 
+# Returns a list containing the training and test sets.
 balanced.traintest.data <- function(filename, sample.size, sparsity.cutoff = 0.98, min.word.length = 3, trainp = 0.7, seed = -1) {
 	dataset <- balanced.sample(filename, sample.size, sparsity.cutoff, min.word.length)
 	if(seed != -1) {set.seed(seed)}
@@ -73,30 +85,25 @@ build.model <- function(training.data, method) {
 	modelFit
 }
 
+# Performs testing and prints key performance statistics. Returns a list containing:
+# 1) model, 2) train.data, 3) test.data, 4) actual, and 5) predicted.
 test.model <- function(dataset, method, trainp = 0.7, seed = -1) {
 	# Build train and test datasets
 	if(seed != -1) {set.seed(seed)}
 	inTrain <- createDataPartition(y = dataset$target.stars, p = trainp, list = FALSE)
 	training <- dataset[inTrain,]
 	testing <- dataset[-inTrain,]	
-	#message(paste("Same levels:", identical(levels(training$target.stars), levels(testing$target.stars))))
 	modelFit <- build.model(training, method=method)
 	message(class(modelFit))
-	# Make predictions using test set and assess performance
-	predictions <- predict(modelFit, newdata=testing)
-	#head(predictions)
-	#comparisons <- data.frame(actual=testing$target.stars, predicted=predictions, 
-							 # resids=(predictions-testing$target.stars))
-	# plot(comparisons$actual, comparisons$predicted)
-	#summary(modelFit)
-	
+	predictions <- predict(modelFit, newdata=testing)	
 	print(confusionMatrix(predictions, testing$target.stars))
 	message("All Done!")
 	list(model=modelFit, train.data=training, test.data=testing, 
 	     actual=as.numeric(testing$target.stars), predicted=as.numeric(predictions))
 }
 
-# Build a predictor function based on the specified model stack.
+# Builds a predictor function based on the specified model stack. The default stacking model is a 
+# random forest, and a QDA is the single default sub-model. 
 model.stack.predictorf <- function(sub.training.data, top.training.data, top.model="rf", sub.models=c("qda")) {
 	mods.list <- vector("list", length(sub.models))
 	for(i in 1:length(sub.models)) {

@@ -47,6 +47,7 @@ def compute_distance_data(df, usercol='user', itemcol='artist', distancef=jaccar
 			dist = distancef(user_item_mat[:,i], user_item_mat[:,j])
 			item_dist_mat[i,j] = dist
 			item_dist_mat[j,i] = dist
+	print('Done!')
 	return {'item_indices':item_inds, 'inverse_item_indices':inv_item_inds, 
 			'user_indices':user_inds, 'item_dist_matrix':item_dist_mat}
 

@@ -32,3 +32,5 @@ predictions <- predict(modelFit,newdata=testing)
 
 # Evaluate and print the quality of prediction on test set
 print(confusionMatrix(predictions,testing$Churn))
+cmp <- data.frame(actual=testing$Churn, predicted=predictions)
+edit(cmp)

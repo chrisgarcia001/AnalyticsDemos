@@ -2,6 +2,9 @@
 # Author: cgarcia
 # About:  This demo shows how to segment customers into groups based on shopping habits. It
 #         uses the EM algorithm which also finds the optimal number of clusters.
+#
+# Attribution: I got the data for this demo somewhere on the Internet, but I cannot
+#              remember where. My apologies to the author for not properly crediting.
 #----------------------------------------------------------------------------------------------------
 
 library(mclust)

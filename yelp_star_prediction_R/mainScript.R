@@ -1,7 +1,11 @@
 #----------------------------------------------------------------------------------------------------
 # Author: cgarcia
 # About: This is the main script for the Yelp star prediction. The goal is to use the text reviews
-#        to build a model which 
+#        to build a model which accurately predicts stars for new reviews whose stars are unknown.
+#
+#        The data used in this demo was a sample I took from the main dataset and preprocessed into 
+#        a CSV file. I obtained the full Yelp dataset here: 
+#        https://d396qusza40orc.cloudfront.net/dsscapstone/dataset/yelp_dataset_challenge_academic_dataset.zip
 #----------------------------------------------------------------------------------------------------
 
 library(caret)

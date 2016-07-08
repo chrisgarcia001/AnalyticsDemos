@@ -1,6 +1,9 @@
 #----------------------------------------------------------------------------------------------------
 # Author: cgarcia
 # About:  This builds and evaluates a model (random forest) to predict customer churn.
+# 
+# Attribution: I got the data for this demo somewhere on the Internet, but I cannot
+#              remember where. My apologies to the author for not properly crediting.
 #----------------------------------------------------------------------------------------------------
 
 library(caret)

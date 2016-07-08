@@ -12,6 +12,9 @@
 #
 # Example Usage: > python recommender_app.py 25 "adele" "ludwig van beethoven"
 #        This will recommend the 25 items liked most by people who like Adele and Beethoven.
+#
+# The lastfm.csv file was obtained here: 
+#        http://www.biz.uiowa.edu/faculty/jledolter/datamining/datatext.html
 #----------------------------------------------------------------------------------------------------
 
 import sys

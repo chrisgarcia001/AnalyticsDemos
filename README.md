@@ -1,4 +1,4 @@
-# AnalyticsDemos
+# Analytics Demos
 This repo contains some demos of applied analytics and data science. Some are in R and some are in Python. The 
 demos are as follows:
 
@@ -7,7 +7,7 @@ model-based clustering). Written in R.
 
 **Recommendation Engine** This provides a from-scratch implementation of a music recommendation engine in Python.
 
-**Yelp Star Prediction**: This demo predicts Yelp stars using only the text reviews and is written in R. As such it provides an 
+**Yelp Star Prediction**: This demo predicts Yelp star ratings (1-5) using only the text reviews and is written in R. As such it provides an 
 example of several text analytics techniques as well as a model stack for prediction. This was trained on a large data set and 
 so takes an hour or so to train from scratch. Accordingly, an R workspace with the pre-built model is also provided so the demo 
 can be run immediately.

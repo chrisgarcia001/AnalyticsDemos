@@ -12,7 +12,7 @@ example of several text analytics techniques as well as a model stack for predic
 so takes an hour or so to train from scratch. Accordingly, an R workspace with the pre-built model is also provided so the demo 
 can be run immediately.
 
-Additionally, here are a few notes for usage:
+Additionally, here are a few notes for usage: 
 
 1. For the Python-based demos, Anaconda Python is recommended since many analytics-based libraries
 come set up. It is available here: [https://www.continuum.io/downloads](https://www.continuum.io/downloads)
